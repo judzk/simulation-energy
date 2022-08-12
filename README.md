@@ -26,4 +26,4 @@ Cout Abonnement : 19.36€
 Cout Total 98.51€
 ```
 ## A Venir
-Export des infos en graphiques# simulation-energy-
+Export des infos en graphiques

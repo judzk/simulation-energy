@@ -21,7 +21,7 @@ Param(
 	[String]$month
 )
 ###################### Variable
-$tarifHP = "0.1434" 					# Tarif HP, mettre un point (.) pour séparer les unitées
+$tarifHP = "0.1306" 					# Tarif HP, mettre un point (.) pour séparer les unitées
 $tarifHC = "0.1149" 					# Tarif HC, mettre un point (.) pour séparer les unitées
 $plagehphc1 = "01:00-07:30"				# Première plage d'heures creuses
 $plagehphc2 = "13:00-14:30"				# Deuxième plage d'heures creuses
@@ -36,7 +36,7 @@ if ($hphc){
 	$min2 = Get-Date $plagehphc2.Split("-")[0]
 	$max2 = Get-Date $plagehphc2.Split("-")[1]
 	$data | ForEach-Object {
-		if ($month -ne $null){
+		if ($month -ne ''){
 			$currentmonth = ([datetime]($_.horodate)).ToString('MM');
 			$myobj1 = $_
 			$month.Split("-") |ForEach-Object {
@@ -71,7 +71,7 @@ if ($hphc){
 	$coutConsoTotal = (($consoParJour.Cout | Measure-Object -Sum).Sum)
 } else {
 	$data | ForEach-Object {
-		if ($month -ne $null){
+		if ($month -ne ''){
 			$currentmonth = ([datetime]($_.horodate)).ToString('MM');
 			$myobj1 = $_
 			$month.Split("-") |ForEach-Object {
@@ -96,7 +96,7 @@ if ($hphc){
 	$coutConsoTotal = ($consoParJour.Cout | Measure-Object -Sum).Sum
 }
 if ($month -eq $null){
-	$coutAbo = [decimal]$abo * 12
+	$coutAbo = [decimal]$abo * $nbrOfMonth
 } else {
 	$coutAbo = [decimal]$abo * $month.Split("-").Length
 }
